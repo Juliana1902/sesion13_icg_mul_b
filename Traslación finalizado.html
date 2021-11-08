@@ -1,0 +1,35 @@
+<canvas id='tablero'  width=5000 height = 4500></canvas>
+<script>
+	function sumaTras(v1, v2){
+	var s = [];
+	for (var i = 0; i < v1.length; i++){
+		s[i] = v1[i] + v2[i % 2 == 0 ? 0 : 1];}
+	return s; 
+}
+	function polygon(cd,colorBorde,colorRelleno,grosor){
+	ctx.beginPath();
+	ctx.strokeStyle = colorBorde;
+	ctx.fillStyle=colorRelleno;
+	ctx.lineWidth= grosor;
+	ctx.moveTo(cd[0],cd[1]);
+	for (var i = 2; i < cd.length; i+=2)
+		ctx.lineTo(cd[i],cd [i + 1])
+	ctx.closePath();
+	ctx.stroke();
+	ctx.fill();       
+}
+
+	
+	var c = document.getElementById('tablero')
+	var ctx = c.getContext('2d')
+	
+	var letra_M = [139,457,260,456,257,344,299,382,341,343,342,452,455,452,452,147,382,147,298,222,224,148,143,149,139,457]
+        
+	var vt = [250,350];
+
+	var letra_M_trasladada = sumaTras(letra_M, vt);
+	
+        ctx.translate(40, 40);
+	polygon(letra_M,'red', 'yellow',6);
+	polygon(letra_M_trasladada, 'red', 'yellow');
+</script>
